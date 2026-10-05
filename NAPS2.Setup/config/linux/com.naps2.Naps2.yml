@@ -142,6 +142,7 @@ modules:
     sources:
       - type: git
         path: ../../../../../..
+      - nuget-sources.json
       - type: file
         path: com.naps2.Naps2.png
       - type: file
