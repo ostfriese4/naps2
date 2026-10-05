@@ -6,6 +6,26 @@ sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet10
 command: naps2
 copy-icon: true
+finish-args:
+  # GUI
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  # USB scanning
+  - --device=all
+  # Network scanning
+  - --share=network
+  # We need /usr access to read host-installed SANE backends
+  # CLI/batch scanning might also need read/write access to arbitrary folders without being able to use a portal
+  - --filesystem=host
+  # App data
+  - --filesystem=xdg-config/naps2
+  # GVfs
+  - --filesystem=xdg-run/gvfsd
+  - --talk-name=org.gtk.vfs.*
+  # mDNS discovery for ESCL scanners
+  - --system-talk-name=org.freedesktop.Avahi
+
 cleanup:
   - /include
   - /lib/*.a
@@ -127,22 +147,3 @@ modules:
         path: com.naps2.Naps2.metainfo.xml
       - type: file
         path: com.naps2.Naps2.desktop
-finish-args:
-  # GUI
-  - --socket=wayland
-  - --socket=fallback-x11
-  - --share=ipc
-  # USB scanning
-  - --device=all
-  # Network scanning
-  - --share=network
-  # We need /usr access to read host-installed SANE backends
-  # CLI/batch scanning might also need read/write access to arbitrary folders without being able to use a portal
-  - --filesystem=host
-  # App data
-  - --filesystem=xdg-config/naps2
-  # GVfs
-  - --filesystem=xdg-run/gvfsd
-  - --talk-name=org.gtk.vfs.*
-  # mDNS discovery for ESCL scanners
-  - --system-talk-name=org.freedesktop.Avahi
