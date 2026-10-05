@@ -28,6 +28,7 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^([\\d.]+)$
+
   - name: tesseract
     buildsystem: cmake-ninja
     builddir: true
@@ -42,6 +43,10 @@ modules:
         url: https://github.com/tesseract-ocr/tesseract
         tag: 5.5.0
         commit: 64eab6c457b2337dd690746a5fde5c222b40d5f8
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\\d.]+)$
+
   - name: avahi
     buildsystem: autotools
     config-opts:
@@ -58,6 +63,10 @@ modules:
         url: https://github.com/lathiat/avahi
         tag: v0.8
         commit: f060abee2807c943821d88839c013ce15db17b58
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\\d.]+)$
+
   - name: sane
     buildsystem: autotools
     sources:
@@ -65,8 +74,12 @@ modules:
         url: https://gitlab.com/sane-project/backends
         tag: 1.4.0
         commit: c7e4b5e35e3d614d2b1181d760a717bfc395a203
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\\d.]+)$
       - type: patch
         path: sane-streamdevices.patch
+
   - name: sane-airscan
     buildsystem: meson
     sources:
@@ -74,6 +87,10 @@ modules:
         url: https://github.com/alexpevzner/sane-airscan
         tag: 0.99.37
         commit: 03eddd0d8058c482462bccabadad0e56e8400cb4
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\\d.]+)$
+
   - name: main
     buildsystem: simple
     build-options:
