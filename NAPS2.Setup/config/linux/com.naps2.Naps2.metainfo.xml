@@ -36,7 +36,7 @@
         <binary>naps2</binary>
     </provides>
 
-    <content_rating type="oars-1.1" />
+    <content_rating type="oars-1.1"/>
     <categories>
         <category>Graphics</category>
         <category>Office</category>
@@ -86,6 +86,9 @@
     </screenshots>
 
     <releases>
+        <release version=".38" date="2026-10-05">
+            <description></description>
+        </release>
         <release version="7.0b1" date="2022-10-25"/>
     </releases>
 </component>

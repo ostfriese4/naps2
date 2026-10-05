@@ -43,11 +43,11 @@ modules:
     sources:
       - type: git
         url: https://github.com/DanBloomberg/leptonica
-        tag: 1.87.0
-        commit: 13275a278eb55b5746e33f95fbf5a2c8f604b3a
+        tag: 1.74.4
+        commit: f3d7ee868b4864cdca7ea57349d49f3d2b4a63ec
         x-checker-data:
           type: git
-          tag-pattern: ^([\\d.]+)$
+          tag-pattern: ^\d+(\.\d+)*$
 
   - name: tesseract
     buildsystem: cmake-ninja
@@ -61,11 +61,11 @@ modules:
     sources:
       - type: git
         url: https://github.com/tesseract-ocr/tesseract
-        tag: 5.5.0
-        commit: 64eab6c457b2337dd690746a5fde5c222b40d5f8
+        tag: 5.3.4
+        commit: 8ee020e14cf5be4e3f0e9beb09b6b050a1871854
         x-checker-data:
           type: git
-          tag-pattern: ^([\\d.]+)$
+          tag-pattern: ^\d+(\.\d+)*$
 
   - name: avahi
     buildsystem: autotools
@@ -92,11 +92,11 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/sane-project/backends
-        tag: 1.4.0
-        commit: c7e4b5e35e3d614d2b1181d760a717bfc395a203
+        tag: 1.0.32
+        commit: c1c567c49b3bc9d86a5796b7fd9b17816700f75c
         x-checker-data:
           type: git
-          tag-pattern: ^([\\d.]+)$
+          tag-pattern: ^\d+(\.\d+)*$
       - type: patch
         path: sane-streamdevices.patch
 
@@ -105,11 +105,11 @@ modules:
     sources:
       - type: git
         url: https://github.com/alexpevzner/sane-airscan
-        tag: 0.99.37
-        commit: 03eddd0d8058c482462bccabadad0e56e8400cb4
+        tag: 0.99.38
+        commit: 9da18d88c88f542671b24fc0433dd7d69dcb0132
         x-checker-data:
           type: git
-          tag-pattern: ^([\\d.]+)$
+          tag-pattern: ^\d+(\.\d+)*$
 
   - name: main
     buildsystem: simple
@@ -129,8 +129,10 @@ modules:
             RUNTIME: linux-x64
     build-commands:
       - mkdir -p /app/bin
-      - dotnet publish NAPS2.App.Gtk -c Release -r $RUNTIME --self-contained /p:DebugType=None /p:DebugSymbols=false --source ./nuget-sources
-      - cp -r --remove-destination /run/build/main/NAPS2.App.Gtk/bin/Release/net10.0/$RUNTIME/publish/. /app/bin/
+      - dotnet publish NAPS2.App.Gtk -c Release -r $RUNTIME --self-contained /p:DebugType=None
+        /p:DebugSymbols=false --source ./nuget-sources
+      - cp -r --remove-destination /run/build/main/NAPS2.App.Gtk/bin/Release/net10.0/$RUNTIME/publish/.
+        /app/bin/
       - install -Dm644 com.naps2.Naps2.png /app/share/icons/hicolor/128x128/apps/com.naps2.Naps2.png
       - install -Dm644 com.naps2.Naps2.metainfo.xml /app/share/metainfo/com.naps2.Naps2.metainfo.xml
       - install -Dm644 com.naps2.Naps2.desktop /app/share/applications/com.naps2.Naps2.desktop
@@ -140,7 +142,6 @@ modules:
     sources:
       - type: git
         path: ../../../../../..
-      - nuget-sources.json
       - type: file
         path: com.naps2.Naps2.png
       - type: file
